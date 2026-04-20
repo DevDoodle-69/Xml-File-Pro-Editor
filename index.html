@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>LMC Config Forge | Pro XML Studio</title>
+    <title>LMC Config Forge | Joyeuse XML Studio</title>
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -14,9 +14,9 @@
         }
 
         body {
-            background: #0b0d14;
+            background: #0a0c14;
             font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
-            color: #eef2ff;
+            color: #edf2ff;
             padding: 20px 24px 48px;
         }
 
@@ -25,11 +25,11 @@
             height: 7px;
         }
         ::-webkit-scrollbar-track {
-            background: #1a1c2a;
+            background: #181c2c;
             border-radius: 10px;
         }
         ::-webkit-scrollbar-thumb {
-            background: #4a4f78;
+            background: #4f5580;
             border-radius: 10px;
         }
 
@@ -38,67 +38,62 @@
             margin: 0 auto;
         }
 
-        /* header */
-        .tool-header {
+        .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
             gap: 18px;
             margin-bottom: 28px;
-            padding-bottom: 18px;
-            border-bottom: 1px solid #252a3e;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #282e48;
         }
-        .brand h1 {
+        .logo h1 {
             font-size: 1.9rem;
             font-weight: 700;
-            background: linear-gradient(130deg, #b7c9ff, #a67cff);
+            background: linear-gradient(135deg, #c0d4ff, #a07eff);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            letter-spacing: -0.3px;
         }
-        .brand p {
-            font-size: 0.8rem;
-            color: #8f95bc;
-            margin-top: 6px;
+        .logo p {
+            font-size: 0.75rem;
+            color: #8f96bc;
+            margin-top: 5px;
         }
-        .status-badge {
-            background: #171b2a;
-            padding: 6px 18px;
-            border-radius: 60px;
-            font-size: 0.8rem;
-            font-weight: 500;
+        .badge {
+            background: #181e32;
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-size: 0.75rem;
         }
 
-        /* main layout */
-        .dashboard {
+        .workspace {
             display: flex;
             flex-wrap: wrap;
             gap: 26px;
         }
-        .control-zone {
+        .control-panel {
             flex: 1.2;
             min-width: 300px;
-            background: #0f121d;
+            background: #0f1220;
             border-radius: 28px;
-            border: 1px solid #282e44;
-            padding: 22px 20px;
-            backdrop-filter: blur(2px);
+            border: 1px solid #292f48;
+            padding: 24px 22px;
         }
-        .xml-zone {
+        .xml-panel {
             flex: 2;
             min-width: 380px;
-            background: #0f121d;
+            background: #0f1220;
             border-radius: 28px;
-            border: 1px solid #282e44;
+            border: 1px solid #292f48;
             display: flex;
             flex-direction: column;
             overflow: hidden;
         }
 
         .section-title {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
             margin: 20px 0 16px 0;
             display: flex;
@@ -111,36 +106,34 @@
             margin-top: 0;
         }
 
-        /* upload area */
         .upload-card {
-            background: #090c16;
-            border: 1px dashed #3e4370;
+            background: #090c18;
+            border: 1px dashed #43487a;
             border-radius: 24px;
-            padding: 28px 18px;
+            padding: 22px 16px;
             text-align: center;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: 0.2s;
             margin-bottom: 20px;
         }
         .upload-card:hover {
-            border-color: #a07cff;
-            background: #11162a;
+            border-color: #a07eff;
+            background: #11162c;
         }
         .upload-card i {
-            font-size: 2.8rem;
+            font-size: 2.4rem;
             color: #9b7aff;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
-        .file-meta {
-            font-size: 0.75rem;
-            background: #1c1f30;
+        .file-name-tag {
+            background: #1b2138;
             display: inline-block;
-            padding: 5px 15px;
-            border-radius: 40px;
+            padding: 5px 14px;
+            border-radius: 30px;
+            font-size: 0.7rem;
             margin-top: 12px;
         }
 
-        /* sliders with indicators */
         .param-item {
             margin-bottom: 24px;
         }
@@ -148,46 +141,42 @@
             display: flex;
             justify-content: space-between;
             margin-bottom: 8px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 500;
         }
         .param-header i {
-            width: 28px;
+            width: 26px;
             color: #b3c2ff;
         }
         input[type="range"] {
             width: 100%;
             height: 5px;
             -webkit-appearance: none;
-            background: #292f4a;
+            background: #2d3352;
             border-radius: 10px;
-        }
-        input[type="range"]:focus {
-            outline: none;
         }
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
-            width: 18px;
-            height: 18px;
+            width: 17px;
+            height: 17px;
             background: #b694ff;
             border-radius: 50%;
             cursor: pointer;
             box-shadow: 0 0 6px #bc9eff;
         }
-        .value-indicator {
-            background: #181d2e;
+        .value-badge {
+            background: #1a1f34;
             padding: 3px 12px;
             border-radius: 30px;
             font-family: monospace;
-            font-size: 0.75rem;
-        }
-        .trend-icon {
             font-size: 0.7rem;
+        }
+        .trend-hint {
+            font-size: 0.65rem;
             margin-left: 6px;
-            color: #86efac;
+            color: #9cf5b0;
         }
 
-        /* Buttons */
         .btn-group {
             display: flex;
             flex-wrap: wrap;
@@ -196,17 +185,17 @@
         }
         .btn {
             flex: 1;
-            background: #202538;
+            background: #20263f;
             border: none;
-            padding: 12px 8px;
+            padding: 11px 8px;
             border-radius: 44px;
             font-weight: 600;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: #eef2ff;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
             cursor: pointer;
             transition: 0.2s;
         }
@@ -219,15 +208,14 @@
             transform: translateY(-1px);
         }
         .btn-secondary {
-            background: #2b304c;
+            background: #2a3150;
         }
         .btn-secondary:hover {
-            background: #3e4570;
+            background: #3d4570;
         }
 
-        /* XML preview */
         .xml-preview-box {
-            background: #06090f;
+            background: #060914;
             padding: 20px;
             font-family: 'Fira Code', 'JetBrains Mono', monospace;
             font-size: 11px;
@@ -235,24 +223,20 @@
             white-space: pre-wrap;
             word-break: break-all;
             min-height: 550px;
-            max-height: 650px;
+            max-height: 620px;
             border-radius: 0 0 24px 24px;
         }
         .preview-header {
             padding: 14px 20px;
-            background: #14182a;
-            border-bottom: 1px solid #2a2f48;
+            background: #141a2e;
+            border-bottom: 1px solid #2a3150;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
         }
-        .copy-download {
-            display: flex;
-            gap: 12px;
-        }
         .icon-btn {
-            background: #2d334f;
+            background: #2a3152;
             border: none;
             padding: 6px 14px;
             border-radius: 32px;
@@ -264,15 +248,14 @@
             gap: 8px;
         }
 
-        /* modal for filename */
-        .modal-overlay {
+        .modal {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(4px);
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(5px);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -281,203 +264,168 @@
             opacity: 0;
             transition: 0.2s;
         }
-        .modal-active {
+        .modal.active {
             visibility: visible;
             opacity: 1;
         }
         .modal-card {
-            background: #13172a;
+            background: #151b30;
             border-radius: 32px;
-            padding: 28px 26px;
+            padding: 28px;
             width: 340px;
-            border: 1px solid #4e5480;
-            box-shadow: 0 20px 35px rgba(0,0,0,0.5);
-        }
-        .modal-card h3 {
-            margin-bottom: 20px;
-            font-size: 1.4rem;
+            border: 1px solid #5a6190;
         }
         .modal-card input {
             width: 100%;
             padding: 12px;
-            background: #0b0f1c;
-            border: 1px solid #3a3f64;
+            background: #0c1022;
+            border: 1px solid #3f4570;
             border-radius: 40px;
             color: white;
-            font-size: 0.9rem;
-            margin-bottom: 24px;
+            margin: 20px 0;
         }
-        .modal-actions {
-            display: flex;
-            gap: 12px;
-            justify-content: flex-end;
-        }
-        .toast-msg {
+        .toast {
             position: fixed;
             bottom: 25px;
             right: 25px;
-            background: #242a47;
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-size: 0.8rem;
+            background: #222842;
+            padding: 10px 22px;
+            border-radius: 40px;
+            font-size: 0.75rem;
             z-index: 1100;
             backdrop-filter: blur(12px);
-            box-shadow: 0 4px 12px black;
         }
         hr {
-            border-color: #252c44;
-            margin: 18px 0;
+            border-color: #2a3150;
+            margin: 16px 0;
         }
-        .diff-badge {
-            font-size: 0.7rem;
-            background: #252c46;
-            border-radius: 30px;
-            padding: 2px 8px;
-            margin-left: 8px;
-        }
-        @media (max-width: 780px) {
-            body { padding: 16px; }
+        .note {
+            font-size: 0.65rem;
+            text-align: center;
+            color: #7b82aa;
+            margin-top: 12px;
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <div class="tool-header">
-        <div class="brand">
-            <h1><i class="fas fa-cog" style="margin-right: 12px;"></i> LMC Config Forge</h1>
-            <p>dynamic XML editor · iphone smoothness · pixel-dslr hybrid · live parameter mapping</p>
+    <div class="header">
+        <div class="logo">
+            <h1><i class="fas fa-microchip"></i> LMC Config Forge</h1>
+            <p>Joyeuse · iPhone smoothness · Pixel-DSLR hybrid · precise XML tuning</p>
         </div>
-        <div class="status-badge" id="liveStatus"><i class="fas fa-sync-alt"></i> ready · auto-sync</div>
+        <div class="badge"><i class="fas fa-sync-alt"></i> auto-detect · live sync</div>
     </div>
 
-    <div class="dashboard">
-        <!-- left panel: controls -->
-        <div class="control-zone">
-            <div class="upload-card" id="uploadTrigger">
-                <i class="fas fa-cloud-upload-alt"></i>
-                <p>Upload LMC config.xml</p>
-                <div id="fileNameTag" class="file-meta">no file loaded</div>
-                <input type="file" id="xmlUploader" accept=".xml" style="display: none;">
+    <div class="workspace">
+        <div class="control-panel">
+            <div class="upload-card" id="uploadZone">
+                <i class="fas fa-file-upload"></i>
+                <p>Load your LMC config.xml</p>
+                <div id="fileNameDisplay" class="file-name-tag">no file loaded</div>
+                <input type="file" id="xmlInput" accept=".xml" style="display: none;">
             </div>
 
-            <div class="section-title"><i class="fas fa-chart-line"></i> Image DNA Controllers <span id="fileHint" class="diff-badge">auto-detected</span></div>
-            
-            <!-- sliders with realtime indicators -->
-            <div class="param-item">
-                <div class="param-header"><span><i class="fas fa-sun"></i> Exposure (EV)</span><span><span id="expValue" class="value-indicator">0.0</span><span id="expTrend" class="trend-icon"></span></span></div>
-                <input type="range" id="exposureSlider" min="-2.5" max="2.5" step="0.1" value="0.2">
-                <div class="param-header" style="margin-top: 6px;"><span>Brightness / Luma</span><span id="brightHint" style="font-size:0.7rem;">neutral</span></div>
-            </div>
+            <div class="section-title"><i class="fas fa-sliders-h"></i> Core Image DNA</div>
 
             <div class="param-item">
-                <div class="param-header"><span><i class="fas fa-adjust"></i> Contrast</span><span><span id="contrValue" class="value-indicator">0.0</span><span id="contrTrend"></span></span></div>
-                <input type="range" id="contrastSlider" min="-1.8" max="2.2" step="0.1" value="0.5">
+                <div class="param-header"><span><i class="fas fa-sun"></i> Exposure (EV)</span><span><span id="expVal" class="value-badge">0.0</span><span id="expTrend" class="trend-hint"></span></span></div>
+                <input type="range" id="exposureSlider" min="-2.0" max="2.5" step="0.1" value="0.0">
             </div>
-
             <div class="param-item">
-                <div class="param-header"><span><i class="fas fa-highlighter"></i> Highlight Recovery</span><span><span id="highValue" class="value-indicator">0.0</span></span></div>
-                <input type="range" id="highlightSlider" min="0" max="6" step="0.5" value="2.2">
+                <div class="param-header"><span><i class="fas fa-adjust"></i> Contrast</span><span><span id="contrVal" class="value-badge">0.0</span><span id="contrTrend" class="trend-hint"></span></span></div>
+                <input type="range" id="contrastSlider" min="-1.5" max="2.0" step="0.1" value="0.3">
             </div>
-
             <div class="param-item">
-                <div class="param-header"><span><i class="fas fa-moon"></i> Shadow Depth</span><span><span id="shadowValue" class="value-indicator">0.0</span></span></div>
-                <input type="range" id="shadowSlider" min="-2" max="2.5" step="0.2" value="0.7">
+                <div class="param-header"><span><i class="fas fa-highlighter"></i> Highlight recovery</span><span><span id="highVal" class="value-badge">0</span></span></div>
+                <input type="range" id="highlightSlider" min="0" max="6" step="0.5" value="2">
             </div>
-
             <div class="param-item">
-                <div class="param-header"><span><i class="fas fa-palette"></i> Saturation (Natural)</span><span><span id="satValue" class="value-indicator">0.0</span></span></div>
-                <input type="range" id="satSlider" min="-1.2" max="1.4" step="0.1" value="0.35">
+                <div class="param-header"><span><i class="fas fa-moon"></i> Shadow depth</span><span><span id="shadowVal" class="value-badge">0</span></span></div>
+                <input type="range" id="shadowSlider" min="0" max="5" step="0.5" value="2">
             </div>
-
             <div class="param-item">
-                <div class="param-header"><span><i class="fas fa-feather-alt"></i> Smoothing / Denoise</span><span><span id="smoothValue" class="value-indicator">0.0</span></span></div>
-                <input type="range" id="smoothSlider" min="0" max="7" step="0.5" value="2.8">
+                <div class="param-header"><span><i class="fas fa-palette"></i> Saturation (natural)</span><span><span id="satVal" class="value-badge">0.0</span></span></div>
+                <input type="range" id="satSlider" min="-0.8" max="1.2" step="0.05" value="0.2">
             </div>
-
             <div class="param-item">
-                <div class="param-header"><span><i class="fas fa-sharpness"></i> Edge Sharpness</span><span><span id="sharpValue" class="value-indicator">0.0</span></span></div>
-                <input type="range" id="sharpSlider" min="-1" max="3.5" step="0.2" value="1.4">
+                <div class="param-header"><span><i class="fas fa-feather-alt"></i> Smoothing / Denoise</span><span><span id="smoothVal" class="value-badge">0</span></span></div>
+                <input type="range" id="smoothSlider" min="0" max="12" step="1" value="4">
+            </div>
+            <div class="param-item">
+                <div class="param-header"><span><i class="fas fa-sharpness"></i> Sharpness (DSLR edge)</span><span><span id="sharpVal" class="value-badge">0</span></span></div>
+                <input type="range" id="sharpSlider" min="0" max="5" step="0.5" value="2">
             </div>
 
             <div class="btn-group">
-                <button class="btn btn-primary" id="applyLiveBtn"><i class="fas fa-bolt"></i> Apply & Sync XML</button>
-                <button class="btn btn-secondary" id="resetToDefaultBtn"><i class="fas fa-history"></i> Reset Sliders</button>
+                <button class="btn btn-primary" id="applyBtn"><i class="fas fa-bolt"></i> Apply & Sync XML</button>
+                <button class="btn btn-secondary" id="resetBtn"><i class="fas fa-undo-alt"></i> Reset to default</button>
             </div>
-            <div class="note" style="font-size:0.7rem; text-align:center; margin-top:10px;">
-                <i class="fas fa-magic"></i> Upload any LMC xml → sliders auto-read values from file → tune → XML updates live
-            </div>
+            <div class="note"><i class="fas fa-info-circle"></i> Upload your XML → sliders auto-read values → tune → live XML updates</div>
         </div>
 
-        <!-- right panel: XML preview & download -->
-        <div class="xml-zone">
+        <div class="xml-panel">
             <div class="preview-header">
-                <span><i class="fas fa-file-code"></i> live config XML</span>
-                <div class="copy-download">
-                    <button class="icon-btn" id="copyXmlAction"><i class="far fa-copy"></i> copy</button>
-                    <button class="icon-btn" id="downloadWithNameBtn"><i class="fas fa-download"></i> download as...</button>
+                <span><i class="fas fa-code"></i> live XML config</span>
+                <div style="display: flex; gap: 10px;">
+                    <button class="icon-btn" id="copyXmlBtn"><i class="far fa-copy"></i> copy</button>
+                    <button class="icon-btn" id="downloadBtn"><i class="fas fa-download"></i> save as...</button>
                 </div>
             </div>
-            <div class="xml-preview-box" id="xmlPreviewArea">
-                <span style="color:#7f8fa4;">// upload or modify to see generated XML</span>
-            </div>
+            <div class="xml-preview-box" id="xmlPreview">// waiting for config load or generation</div>
         </div>
     </div>
 </div>
 
-<!-- modal for custom filename -->
-<div id="filenameModal" class="modal-overlay">
+<div id="nameModal" class="modal">
     <div class="modal-card">
-        <h3><i class="fas fa-save"></i> save config</h3>
-        <input type="text" id="customFileNameInput" placeholder="config_name" value="lmc_tuned_config">
-        <div class="modal-actions">
-            <button class="btn btn-secondary" id="cancelModalBtn">Cancel</button>
-            <button class="btn btn-primary" id="confirmDownloadBtn">Download</button>
+        <h3><i class="fas fa-save"></i> filename</h3>
+        <input type="text" id="filenameInput" placeholder="config_name" value="lmc_joyeuse_tuned">
+        <div style="display: flex; gap: 12px; justify-content: flex-end;">
+            <button class="btn btn-secondary" id="cancelModal">Cancel</button>
+            <button class="btn btn-primary" id="confirmDownload">Download</button>
         </div>
     </div>
 </div>
 
 <script>
-    // ------------------- CORE STATE -------------------
-    let currentXmlDoc = null;        // parsed XML document
+    // ---------- XML CORE ----------
+    let currentXmlDoc = null;
     let currentXmlString = "";
 
-    // default base structure (fallback)
+    // default base XML (full structure from given file, but we'll keep minimal default)
     const DEFAULT_XML = `<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
 <map>
-    <string name="pref_exposure_5th_key">-2</string>
-    <string name="pref_exposure_4th_key">-2</string>
-    <string name="pref_exposure_wide_key">-2</string>
-    <string name="lib_contrast_2_key">2</string>
-    <string name="lib_contrast_1_pro_key">2</string>
-    <string name="lib_contrastblack_key">1</string>
-    <string name="lib_hightlight2_key_2">2</string>
-    <string name="lib_hightlight2_key_3">2</string>
-    <string name="lib_hightlight2_key_4">2</string>
-    <string name="lib_hightlight2_key_5">2</string>
-    <string name="lib_shadowtuning_key">2</string>
-    <string name="lib_shadowtuning_key_2">2</string>
+    <string name="pref_exposure_5th_key">0</string>
+    <string name="pref_exposure_4th_key">0</string>
+    <string name="lib_contrast_2_key">0</string>
+    <string name="lib_contrast_1_pro_key">0</string>
+    <string name="lib_hightlight2_key_2">0</string>
+    <string name="lib_hightlight2_key_3">0</string>
+    <string name="lib_hightlight2_key_4">0</string>
+    <string name="lib_hightlight2_key_5">0</string>
+    <string name="lib_shadowtuning_key">0</string>
+    <string name="lib_shadowtuning_key_2">0</string>
     <string name="pref_satCCT_key">1.0</string>
-    <string name="lib_smoothingnew_key">2</string>
-    <string name="lib_smoothingnew_key_2">2</string>
-    <string name="lib_smoothingnew_key_3">2</string>
-    <string name="lib_sharpnessb_key">2</string>
-    <string name="lib_sabresharp_key">2</string>
-    <string name="lib_lumasmoothing_key">1</string>
-    <string name="pref_satCCT_R_key">0.92</string>
+    <string name="lib_smoothingnew_key">0</string>
+    <string name="lib_smoothingnew_key_2">0</string>
+    <string name="lib_smoothingnew_key_3">0</string>
+    <string name="lib_sharpnessb_key">0</string>
+    <string name="lib_sabresharp_key">0</string>
+    <string name="lib_lumasmoothing_key">0</string>
+    <string name="pref_satCCT_R_key">1.0</string>
+    <string name="lib_saturation_key_2">0</string>
+    <string name="lib_saturation_key_3">0</string>
+    <string name="lib_denoisesmoothing_key">0</string>
 </map>`;
 
-    // helper: parse xml safely
     function parseXmlString(xmlStr) {
         const parser = new DOMParser();
         const doc = parser.parseFromString(xmlStr, "application/xml");
-        if (doc.querySelector("parsererror")) {
-            console.warn("parse error");
-            return null;
-        }
+        if (doc.querySelector("parsererror")) return null;
         return doc;
     }
 
-    // get/set string value
     function setStringValue(doc, nameAttr, newValue) {
         const mapNode = doc.querySelector("map");
         if (!mapNode) return false;
@@ -500,53 +448,42 @@
         return target ? target.textContent : def;
     }
 
-    // READ from XML and UPDATE SLIDERS based on actual file values
+    // READ from XML and sync sliders
     function syncSlidersFromXml(doc) {
         if (!doc) return;
-        // exposure mapping: read pref_exposure_5th_key ( -3 to +3 )
-        let expRaw = parseInt(getStringValue(doc, "pref_exposure_5th_key", "-2"));
-        if (isNaN(expRaw)) expRaw = -2;
-        let expSliderVal = Math.min(2.5, Math.max(-2.5, expRaw * 0.8));
-        document.getElementById("exposureSlider").value = expSliderVal;
-        
-        // contrast: lib_contrast_2_key (0-5)
-        let contrRaw = parseInt(getStringValue(doc, "lib_contrast_2_key", "2"));
-        let contrMapped = (contrRaw / 2.5) - 0.2;
-        contrMapped = Math.min(2.2, Math.max(-1.8, contrMapped));
-        document.getElementById("contrastSlider").value = contrMapped;
-        
-        // highlight: lib_hightlight2_key_2
-        let highRaw = parseInt(getStringValue(doc, "lib_hightlight2_key_2", "2"));
+        // exposure
+        let expRaw = parseInt(getStringValue(doc, "pref_exposure_5th_key", "0"));
+        expRaw = isNaN(expRaw) ? 0 : expRaw;
+        let expSlider = Math.min(2.5, Math.max(-2.0, expRaw * 0.7));
+        document.getElementById("exposureSlider").value = expSlider;
+        // contrast (lib_contrast_2_key 0-5)
+        let contrRaw = parseInt(getStringValue(doc, "lib_contrast_2_key", "0"));
+        let contrMap = (contrRaw / 2.5) - 0.2;
+        contrMap = Math.min(2.0, Math.max(-1.5, contrMap));
+        document.getElementById("contrastSlider").value = contrMap;
+        // highlight
+        let highRaw = parseInt(getStringValue(doc, "lib_hightlight2_key_2", "0"));
         document.getElementById("highlightSlider").value = Math.min(6, Math.max(0, highRaw));
-        
-        // shadow: lib_shadowtuning_key
-        let shadowRaw = parseInt(getStringValue(doc, "lib_shadowtuning_key", "2"));
-        let shadowVal = (shadowRaw / 2) - 0.5;
-        shadowVal = Math.min(2.5, Math.max(-2, shadowVal));
-        document.getElementById("shadowSlider").value = shadowVal;
-        
-        // saturation: pref_satCCT_key (float)
+        // shadow
+        let shadowRaw = parseInt(getStringValue(doc, "lib_shadowtuning_key", "0"));
+        document.getElementById("shadowSlider").value = Math.min(5, Math.max(0, shadowRaw));
+        // saturation
         let satRaw = parseFloat(getStringValue(doc, "pref_satCCT_key", "1.0"));
-        let satMapped = (satRaw - 0.85) * 1.8;
-        satMapped = Math.min(1.4, Math.max(-1.2, satMapped));
+        let satMapped = (satRaw - 0.9) * 1.8;
+        satMapped = Math.min(1.2, Math.max(-0.8, satMapped));
         document.getElementById("satSlider").value = satMapped;
-        
-        // smoothing: lib_smoothingnew_key
-        let smoothRaw = parseInt(getStringValue(doc, "lib_smoothingnew_key", "2"));
-        document.getElementById("smoothSlider").value = Math.min(7, Math.max(0, smoothRaw));
-        
-        // sharpness: lib_sharpnessb_key
-        let sharpRaw = parseInt(getStringValue(doc, "lib_sharpnessb_key", "2"));
-        let sharpMapped = (sharpRaw / 2) - 0.2;
-        sharpMapped = Math.min(3.5, Math.max(-1, sharpMapped));
-        document.getElementById("sharpSlider").value = sharpMapped;
-        
-        updateAllValueDisplays();
-        showToast("✅ settings auto-detected from uploaded file", 1500);
+        // smoothing
+        let smoothRaw = parseInt(getStringValue(doc, "lib_smoothingnew_key", "0"));
+        document.getElementById("smoothSlider").value = Math.min(12, Math.max(0, smoothRaw));
+        // sharpness
+        let sharpRaw = parseInt(getStringValue(doc, "lib_sharpnessb_key", "0"));
+        document.getElementById("sharpSlider").value = Math.min(5, Math.max(0, sharpRaw));
+        updateAllDisplays();
+        showToast("✅ settings loaded from XML", 1200);
     }
 
-    // apply current slider values to XML document (full transformation)
-    function applySlidersToXml(doc) {
+    // apply sliders to XML doc
+    function applySlidersToDoc(doc) {
         if (!doc) return null;
         let exp = parseFloat(document.getElementById("exposureSlider").value);
         let contrast = parseFloat(document.getElementById("contrastSlider").value);
@@ -555,187 +492,180 @@
         let sat = parseFloat(document.getElementById("satSlider").value);
         let smooth = parseFloat(document.getElementById("smoothSlider").value);
         let sharp = parseFloat(document.getElementById("sharpSlider").value);
-        
-        // exposure integer
+
+        // exposure integer -3..3
         let evInt = Math.round(exp * 1.2);
         evInt = Math.min(3, Math.max(-3, evInt));
         setStringValue(doc, "pref_exposure_5th_key", evInt.toString());
         setStringValue(doc, "pref_exposure_4th_key", evInt.toString());
         setStringValue(doc, "pref_exposure_wide_key", evInt.toString());
         setStringValue(doc, "pref_exposure_tele_key", evInt.toString());
-        
-        // contrast
-        let contrInt = Math.min(5, Math.max(0, Math.floor((contrast + 0.8) * 1.6)));
+        setStringValue(doc, "pref_exposure_main_key", evInt.toString());
+
+        // contrast (0-5 scale)
+        let contrInt = Math.min(5, Math.max(0, Math.floor((contrast + 0.5) * 1.8)));
         setStringValue(doc, "lib_contrast_2_key", contrInt.toString());
         setStringValue(doc, "lib_contrast_1_pro_key", contrInt.toString());
-        let blackCont = Math.min(4, Math.max(0, Math.floor(contrast * 1.3)));
+        let blackCont = Math.min(4, Math.max(0, Math.floor(contrast * 1.2)));
         setStringValue(doc, "lib_contrastblack_key", blackCont.toString());
-        
+
         // highlight
         let highInt = Math.min(6, Math.max(0, Math.floor(highlight)));
         setStringValue(doc, "lib_hightlight2_key_2", highInt.toString());
         setStringValue(doc, "lib_hightlight2_key_3", highInt.toString());
         setStringValue(doc, "lib_hightlight2_key_4", highInt.toString());
         setStringValue(doc, "lib_hightlight2_key_5", highInt.toString());
-        
+
         // shadow
-        let shadowInt = Math.min(5, Math.max(0, Math.floor((shadow + 1.2) * 1.2)));
+        let shadowInt = Math.min(5, Math.max(0, Math.floor(shadow)));
         setStringValue(doc, "lib_shadowtuning_key", shadowInt.toString());
         setStringValue(doc, "lib_shadowtuning_key_2", shadowInt.toString());
         setStringValue(doc, "lib_shadowtuning_key_3", shadowInt.toString());
-        
+
         // saturation
-        let satFloat = 0.85 + (sat * 0.22);
-        satFloat = Math.min(1.35, Math.max(0.65, satFloat));
+        let satFloat = 0.88 + (sat * 0.22);
+        satFloat = Math.min(1.28, Math.max(0.72, satFloat));
         setStringValue(doc, "pref_satCCT_key", satFloat.toFixed(3));
-        let satSecondary = Math.min(20, Math.max(3, Math.floor(10 + sat * 12)));
-        setStringValue(doc, "lib_saturation_key_2", satSecondary.toString());
-        setStringValue(doc, "lib_saturation_key_3", satSecondary.toString());
-        // RGB tone for apple smoothness
-        let redSat = (0.92 + sat * 0.07).toFixed(3);
+        let satInt = Math.min(20, Math.max(3, Math.floor(10 + sat * 12)));
+        setStringValue(doc, "lib_saturation_key_2", satInt.toString());
+        setStringValue(doc, "lib_saturation_key_3", satInt.toString());
+        let redSat = (0.96 + sat * 0.08).toFixed(3);
         setStringValue(doc, "pref_satCCT_R_key", redSat);
-        
+
         // smoothing
-        let smoothInt = Math.min(7, Math.max(0, Math.floor(smooth)));
+        let smoothInt = Math.min(12, Math.max(0, Math.floor(smooth)));
         setStringValue(doc, "lib_smoothingnew_key", smoothInt.toString());
         setStringValue(doc, "lib_smoothingnew_key_2", smoothInt.toString());
         setStringValue(doc, "lib_smoothingnew_key_3", smoothInt.toString());
         setStringValue(doc, "lib_smoothingnew_key_4", smoothInt.toString());
         setStringValue(doc, "lib_smoothingnew_key_5", smoothInt.toString());
         setStringValue(doc, "lib_lumasmoothing_key", Math.floor(smoothInt * 0.7).toString());
-        setStringValue(doc, "lib_denoisesmoothing_key", Math.floor(smoothInt * 0.9).toString());
-        
+        setStringValue(doc, "lib_denoisesmoothing_key", Math.floor(smoothInt * 0.8).toString());
+
         // sharpness
-        let sharpInt = Math.min(5, Math.max(0, Math.floor((sharp + 0.9) * 1.5)));
+        let sharpInt = Math.min(5, Math.max(0, Math.floor(sharp)));
         setStringValue(doc, "lib_sharpnessb_key", sharpInt.toString());
         setStringValue(doc, "lib_sharpnessb_key_2", sharpInt.toString());
         setStringValue(doc, "lib_sharpnessb_key_3", sharpInt.toString());
         setStringValue(doc, "lib_sabresharp_key", sharpInt.toString());
-        let microSharp = Math.min(3, Math.max(0, sharp / 1.8));
-        setStringValue(doc, "lib_sharpmini_key", Math.floor(microSharp).toString());
-        
+        setStringValue(doc, "lib_sharpmini_key", Math.floor(sharpInt * 0.7).toString());
+
         return doc;
     }
-    
-    // update preview and global state
+
     function renderPreview() {
         if (!currentXmlDoc) {
             currentXmlDoc = parseXmlString(DEFAULT_XML);
+            if (!currentXmlDoc) currentXmlDoc = parseXmlString(DEFAULT_XML);
         }
         const serializer = new XMLSerializer();
-        let rawXml = serializer.serializeToString(currentXmlDoc);
-        rawXml = rawXml.replace(/><\/string>/g, '></string>\n');
-        currentXmlString = rawXml;
-        document.getElementById("xmlPreviewArea").textContent = rawXml;
+        let raw = serializer.serializeToString(currentXmlDoc);
+        raw = raw.replace(/><\/string>/g, '></string>\n');
+        currentXmlString = raw;
+        document.getElementById("xmlPreview").textContent = raw;
     }
-    
-    function syncAll() {
+
+    function syncFull() {
         if (!currentXmlDoc) {
             currentXmlDoc = parseXmlString(DEFAULT_XML);
         }
-        currentXmlDoc = applySlidersToXml(currentXmlDoc);
+        currentXmlDoc = applySlidersToDoc(currentXmlDoc);
         renderPreview();
-        showToast("⚡ XML updated with current settings", 1000);
+        showToast("⚡ XML parameters updated", 1000);
     }
-    
-    function updateAllValueDisplays() {
-        document.getElementById("expValue").innerHTML = document.getElementById("exposureSlider").value;
-        document.getElementById("contrValue").innerHTML = document.getElementById("contrastSlider").value;
-        document.getElementById("highValue").innerHTML = document.getElementById("highlightSlider").value;
-        document.getElementById("shadowValue").innerHTML = document.getElementById("shadowSlider").value;
-        document.getElementById("satValue").innerHTML = document.getElementById("satSlider").value;
-        document.getElementById("smoothValue").innerHTML = document.getElementById("smoothSlider").value;
-        document.getElementById("sharpValue").innerHTML = document.getElementById("sharpSlider").value;
-        // trend icons
-        let expVal = parseFloat(document.getElementById("exposureSlider").value);
-        document.getElementById("expTrend").innerHTML = expVal > 0.2 ? ' ↑ brighter' : (expVal < -0.2 ? ' ↓ darker' : ' → neutral');
-        let cVal = parseFloat(document.getElementById("contrastSlider").value);
-        document.getElementById("contrTrend").innerHTML = cVal > 0.4 ? ' ↑ punchy' : (cVal < -0.2 ? ' ↓ soft' : ' balanced');
-        let brightHint = document.getElementById("brightHint");
-        brightHint.innerText = expVal > 0.5 ? ' vivid exposure' : (expVal < -0.5 ? ' moody' : ' natural');
+
+    function updateAllDisplays() {
+        let exp = parseFloat(document.getElementById("exposureSlider").value);
+        document.getElementById("expVal").innerText = exp.toFixed(1);
+        document.getElementById("expTrend").innerHTML = exp > 0.2 ? '↑ brighter' : (exp < -0.2 ? '↓ darker' : 'neutral');
+        let c = parseFloat(document.getElementById("contrastSlider").value);
+        document.getElementById("contrVal").innerText = c.toFixed(1);
+        document.getElementById("contrTrend").innerHTML = c > 0.3 ? 'punchy' : (c < -0.1 ? 'soft' : 'balanced');
+        document.getElementById("highVal").innerText = document.getElementById("highlightSlider").value;
+        document.getElementById("shadowVal").innerText = document.getElementById("shadowSlider").value;
+        document.getElementById("satVal").innerText = parseFloat(document.getElementById("satSlider").value).toFixed(2);
+        document.getElementById("smoothVal").innerText = document.getElementById("smoothSlider").value;
+        document.getElementById("sharpVal").innerText = document.getElementById("sharpSlider").value;
     }
-    
-    function resetSlidersToDefault() {
-        document.getElementById("exposureSlider").value = "0.2";
-        document.getElementById("contrastSlider").value = "0.5";
-        document.getElementById("highlightSlider").value = "2.2";
-        document.getElementById("shadowSlider").value = "0.7";
-        document.getElementById("satSlider").value = "0.35";
-        document.getElementById("smoothSlider").value = "2.8";
-        document.getElementById("sharpSlider").value = "1.4";
-        updateAllValueDisplays();
+
+    function resetSliders() {
+        document.getElementById("exposureSlider").value = "0.0";
+        document.getElementById("contrastSlider").value = "0.3";
+        document.getElementById("highlightSlider").value = "2";
+        document.getElementById("shadowSlider").value = "2";
+        document.getElementById("satSlider").value = "0.2";
+        document.getElementById("smoothSlider").value = "4";
+        document.getElementById("sharpSlider").value = "2";
+        updateAllDisplays();
         if (currentXmlDoc) {
-            currentXmlDoc = applySlidersToXml(currentXmlDoc);
+            currentXmlDoc = applySlidersToDoc(currentXmlDoc);
             renderPreview();
         } else {
             currentXmlDoc = parseXmlString(DEFAULT_XML);
-            currentXmlDoc = applySlidersToXml(currentXmlDoc);
+            currentXmlDoc = applySlidersToDoc(currentXmlDoc);
             renderPreview();
         }
-        showToast("🎛️ reset to premium smooth preset", 1200);
+        showToast("🎛️ reset to natural smooth preset", 1200);
     }
-    
+
     function showToast(msg, duration = 1800) {
-        let toast = document.querySelector(".toast-msg");
-        if (!toast) {
-            toast = document.createElement("div");
-            toast.className = "toast-msg";
-            document.body.appendChild(toast);
+        let t = document.querySelector(".toast");
+        if (!t) {
+            t = document.createElement("div");
+            t.className = "toast";
+            document.body.appendChild(t);
         }
-        toast.innerHTML = `<i class="fas fa-circle-info"></i> ${msg}`;
-        toast.style.opacity = "1";
-        setTimeout(() => toast.style.opacity = "0", duration);
+        t.innerHTML = `<i class="fas fa-circle-info"></i> ${msg}`;
+        t.style.opacity = "1";
+        setTimeout(() => t.style.opacity = "0", duration);
     }
-    
-    // file upload handler: auto-detect and populate sliders & xml
-    function handleUploadedFile(file) {
+
+    // file upload
+    function handleFile(file) {
         if (!file) return;
         const reader = new FileReader();
         reader.onload = (e) => {
             const content = e.target.result;
             const parsed = parseXmlString(content);
             if (!parsed) {
-                showToast("❌ invalid XML, using default template", 2000);
+                showToast("❌ invalid XML, using default", 1500);
                 currentXmlDoc = parseXmlString(DEFAULT_XML);
                 renderPreview();
                 syncSlidersFromXml(currentXmlDoc);
+                currentXmlDoc = applySlidersToDoc(currentXmlDoc);
+                renderPreview();
                 return;
             }
             currentXmlDoc = parsed;
             renderPreview();
-            // critical: read from file and set sliders accordingly
             syncSlidersFromXml(currentXmlDoc);
-            // after sliders updated, re-apply to ensure consistency
-            currentXmlDoc = applySlidersToXml(currentXmlDoc);
+            currentXmlDoc = applySlidersToDoc(currentXmlDoc);
             renderPreview();
-            document.getElementById("fileNameTag").innerHTML = `<i class="fas fa-check-circle"></i> ${file.name}`;
-            document.getElementById("liveStatus").innerHTML = `<i class="fas fa-microchip"></i> config loaded · active`;
+            document.getElementById("fileNameDisplay").innerHTML = `<i class="fas fa-check"></i> ${file.name}`;
+            showToast(`loaded: ${file.name}`, 1500);
         };
         reader.readAsText(file);
     }
-    
-    // modal download with custom name
-    let pendingDownload = false;
-    function requestDownloadWithName() {
-        const modal = document.getElementById("filenameModal");
-        const inputField = document.getElementById("customFileNameInput");
-        inputField.value = currentXmlDoc ? "lmc_custom" : "lmc_config";
-        modal.classList.add("modal-active");
-        pendingDownload = true;
-    }
-    
-    document.getElementById("confirmDownloadBtn").addEventListener("click", () => {
+
+    // modal download
+    const modal = document.getElementById("nameModal");
+    function openModal() { modal.classList.add("active"); }
+    function closeModal() { modal.classList.remove("active"); }
+
+    document.getElementById("downloadBtn").addEventListener("click", openModal);
+    document.getElementById("cancelModal").addEventListener("click", closeModal);
+    document.getElementById("confirmDownload").addEventListener("click", () => {
         if (!currentXmlDoc) {
-            showToast("No active config", 1000);
-            document.getElementById("filenameModal").classList.remove("modal-active");
+            showToast("no active config", 1000);
+            closeModal();
             return;
         }
-        let baseName = document.getElementById("customFileNameInput").value.trim();
+        let baseName = document.getElementById("filenameInput").value.trim();
         if (baseName === "") baseName = "lmc_config";
         if (!baseName.endsWith(".xml")) baseName += ".xml";
         const serializer = new XMLSerializer();
-        let finalXml = serializer.serializeToString(currentXmlDoc);
-        const blob = new Blob([finalXml], {type: "application/xml"});
+        const xmlData = serializer.serializeToString(currentXmlDoc);
+        const blob = new Blob([xmlData], {type: "application/xml"});
         const link = document.createElement("a");
         const url = URL.createObjectURL(blob);
         link.href = url;
@@ -744,49 +674,44 @@
         link.click();
         document.body.removeChild(link);
         URL.revokeObjectURL(url);
-        document.getElementById("filenameModal").classList.remove("modal-active");
+        closeModal();
         showToast(`✅ saved as ${baseName}`, 1800);
-        pendingDownload = false;
     });
-    
-    document.getElementById("cancelModalBtn").addEventListener("click", () => {
-        document.getElementById("filenameModal").classList.remove("modal-active");
+
+    // events
+    document.getElementById("uploadZone").addEventListener("click", () => document.getElementById("xmlInput").click());
+    document.getElementById("xmlInput").addEventListener("change", (e) => {
+        if (e.target.files.length) handleFile(e.target.files[0]);
     });
-    
-    // event listeners
-    document.getElementById("uploadTrigger").addEventListener("click", () => document.getElementById("xmlUploader").click());
-    document.getElementById("xmlUploader").addEventListener("change", (e) => {
-        if (e.target.files.length) handleUploadedFile(e.target.files[0]);
-    });
-    document.getElementById("applyLiveBtn").addEventListener("click", () => {
+    document.getElementById("applyBtn").addEventListener("click", () => {
         if (!currentXmlDoc) currentXmlDoc = parseXmlString(DEFAULT_XML);
-        syncAll();
+        syncFull();
     });
-    document.getElementById("resetToDefaultBtn").addEventListener("click", resetSlidersToDefault);
-    document.getElementById("copyXmlAction").addEventListener("click", () => {
-        if (!currentXmlString) syncAll();
+    document.getElementById("resetBtn").addEventListener("click", resetSliders);
+    document.getElementById("copyXmlBtn").addEventListener("click", () => {
+        if (!currentXmlString) syncFull();
         navigator.clipboard.writeText(currentXmlString).then(() => showToast("📋 XML copied"));
     });
-    document.getElementById("downloadWithNameBtn").addEventListener("click", requestDownloadWithName);
-    
-    // sliders realtime update displays
+
     const sliders = ["exposureSlider","contrastSlider","highlightSlider","shadowSlider","satSlider","smoothSlider","sharpSlider"];
     sliders.forEach(id => {
         document.getElementById(id).addEventListener("input", () => {
-            updateAllValueDisplays();
-            // optional live sync (but we apply on demand, for performance)
+            updateAllDisplays();
         });
     });
-    
-    // initial load
+
+    // init
     currentXmlDoc = parseXmlString(DEFAULT_XML);
     if (currentXmlDoc) {
         renderPreview();
         syncSlidersFromXml(currentXmlDoc);
-        currentXmlDoc = applySlidersToXml(currentXmlDoc);
+        currentXmlDoc = applySlidersToDoc(currentXmlDoc);
+        renderPreview();
+    } else {
+        currentXmlDoc = parseXmlString(DEFAULT_XML);
         renderPreview();
     }
-    updateAllValueDisplays();
+    updateAllDisplays();
 </script>
 </body>
 </html>
