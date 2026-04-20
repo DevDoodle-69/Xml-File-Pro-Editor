@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>LMC Config Studio | XML Customizer</title>
+    <!-- Font Awesome 6 (free icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0c12;
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            color: #eef2ff;
+            padding: 24px 20px 48px;
+        }
+
+        /* modern scroll */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e1f2c;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3b3f5c;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #5a5f8a;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* header */
+        .studio-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 32px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #2a2d3e;
+        }
+        .logo-area h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #c0e0ff, #9f7aea);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.3px;
+        }
+        .logo-area p {
+            font-size: 0.85rem;
+            color: #8f94b0;
+            margin-top: 6px;
+        }
+        .badge {
+            background: #1e1f2c;
+            padding: 6px 14px;
+            border-radius: 60px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #b9c3e8;
+        }
+        .badge i {
+            margin-right: 8px;
+            font-size: 0.9rem;
+        }
+
+        /* two column layout */
+        .workspace {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px;
+        }
+        .control-panel {
+            flex: 1.2;
+            min-width: 280px;
+            background: #0f111a;
+            border-radius: 28px;
+            border: 1px solid #272a3a;
+            padding: 24px 22px;
+            backdrop-filter: blur(2px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+        }
+        .preview-panel {
+            flex: 2;
+            min-width: 360px;
+            background: #0f111a;
+            border-radius: 28px;
+            border: 1px solid #272a3a;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+        }
+
+        /* section titles */
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-left: 3px solid #7c5cff;
+            padding-left: 14px;
+        }
+        .section-title i {
+            color: #7c5cff;
+            font-size: 1.2rem;
+        }
+
+        /* file upload zone */
+        .upload-zone {
+            background: #090b12;
+            border: 1px dashed #3e425c;
+            border-radius: 20px;
+            padding: 24px 16px;
+            text-align: center;
+            margin-bottom: 28px;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .upload-zone:hover {
+            border-color: #7c5cff;
+            background: #12152a;
+        }
+        .upload-zone i {
+            font-size: 2.4rem;
+            color: #7c5cff;
+            margin-bottom: 12px;
+        }
+        .upload-zone p {
+            font-size: 0.9rem;
+            color: #b9c1e0;
+        }
+        .file-name {
+            font-size: 0.8rem;
+            background: #1b1e2c;
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 60px;
+            margin-top: 12px;
+        }
+
+        /* slider group */
+        .param-group {
+            margin-bottom: 28px;
+        }
+        .param-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            letter-spacing: 0.3px;
+        }
+        .param-header i {
+            width: 24px;
+            color: #a5b3e0;
+        }
+        input[type="range"] {
+            width: 100%;
+            height: 4px;
+            -webkit-appearance: none;
+            background: #2a2e44;
+            border-radius: 10px;
+            outline: none;
+        }
+        input[type="range"]:focus {
+            outline: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            background: #9f87ff;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 5px #ab8eff;
+            border: none;
+        }
+        .value-display {
+            background: #1a1d2b;
+            padding: 4px 10px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-family: monospace;
+        }
+
+        /* action buttons */
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin: 28px 0 16px;
+        }
+        .btn {
+            flex: 1;
+            background: #202433;
+            border: none;
+            padding: 12px 8px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #eef2ff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .btn-primary {
+            background: #5f45e6;
+            box-shadow: 0 4px 12px rgba(95, 69, 230, 0.3);
+        }
+        .btn-primary:hover {
+            background: #775ef0;
+            transform: translateY(-1px);
+        }
+        .btn-secondary {
+            background: #2a2f46;
+        }
+        .btn-secondary:hover {
+            background: #3c4262;
+        }
+        .btn-outline {
+            border: 1px solid #5a5f88;
+            background: transparent;
+        }
+
+        /* xml preview area */
+        .xml-preview {
+            flex: 1;
+            background: #090c15;
+            margin: 0;
+            padding: 18px;
+            font-family: 'Fira Code', 'JetBrains Mono', monospace;
+            font-size: 12px;
+            overflow: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+            border-radius: 0 0 24px 24px;
+            min-height: 480px;
+            max-height: 600px;
+        }
+        .preview-header {
+            padding: 16px 20px;
+            background: #131625;
+            border-bottom: 1px solid #292e44;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .preview-header span {
+            font-weight: 500;
+        }
+        .copy-btn {
+            background: #2e344c;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 40px;
+            color: white;
+            font-size: 0.75rem;
+            cursor: pointer;
+        }
+
+        /* toast message */
+        .toast-msg {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #2c2f48;
+            padding: 12px 24px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            color: #e2e8ff;
+            z-index: 999;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: 0.2s;
+        }
+
+        @media (max-width: 780px) {
+            body { padding: 16px; }
+            .control-panel, .preview-panel { min-width: 100%; }
+        }
+        hr {
+            border-color: #262b3f;
+            margin: 16px 0;
+        }
+        .note {
+            font-size: 0.7rem;
+            color: #7a80a8;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="studio-header">
+        <div class="logo-area">
+            <h1><i class="fas fa-sliders-h" style="margin-right: 10px;"></i> LMC Config Studio</h1>
+            <p>precision tuning · iPhone smoothness · natural tone fusion</p>
+        </div>
+        <div class="badge">
+            <i class="fas fa-code-branch"></i> XML · dynamic editor
+        </div>
+    </div>
+
+    <div class="workspace">
+        <!-- left panel: controls -->
+        <div class="control-panel">
+            <div class="section-title">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <span>1. Load config</span>
+            </div>
+            <div class="upload-zone" id="uploadZone">
+                <i class="fas fa-file-code"></i>
+                <p>Click or drag .xml file (LMC config)</p>
+                <input type="file" id="xmlFileInput" accept=".xml" style="display: none;">
+                <div id="fileNameDisplay" class="file-name">no file selected</div>
+            </div>
+
+            <div class="section-title" style="margin-top: 8px;">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>2. Adjust image DNA</span>
+            </div>
+
+            <!-- dynamic sliders for key parameters -->
+            <div class="param-group">
+                <div class="param-header"><span><i class="fas fa-sun"></i> Exposure / Brightness</span><span id="expVal" class="value-display">0.0</span></div>
+                <input type="range" id="exposureSlider" min="-2.0" max="2.0" step="0.1" value="0.3">
+                <div class="param-header" style="margin-top: 12px;"><span><i class="fas fa-adjust"></i> Contrast</span><span id="contrVal" class="value-display">0.0</span></div>
+                <input type="range" id="contrastSlider" min="-1.5" max="1.8" step="0.1" value="0.4">
+                <div class="param-header" style="margin-top: 12px;"><span><i class="fas fa-lightbulb"></i> Highlight recovery</span><span id="highVal" class="value-display">0.0</span></div>
+                <input type="range" id="highlightSlider" min="0" max="5" step="0.5" value="2.0">
+                <div class="param-header" style="margin-top: 12px;"><span><i class="fas fa-moon"></i> Shadow depth</span><span id="shadowVal" class="value-display">0.0</span></div>
+                <input type="range" id="shadowSlider" min="-2" max="2" step="0.2" value="0.6">
+                <div class="param-header" style="margin-top: 12px;"><span><i class="fas fa-palette"></i> Saturation (natural)</span><span id="satVal" class="value-display">0.0</span></div>
+                <input type="range" id="satSlider" min="-1" max="1.2" step="0.1" value="0.25">
+                <div class="param-header" style="margin-top: 12px;"><span><i class="fas fa-feather-alt"></i> Smoothing / Denoise</span><span id="smoothVal" class="value-display">0.0</span></div>
+                <input type="range" id="smoothSlider" min="0" max="6" step="0.5" value="2.5">
+                <div class="param-header" style="margin-top: 12px;"><span><i class="fas fa-sharpness"></i> Sharpness (DSLR edge)</span><span id="sharpVal" class="value-display">0.0</span></div>
+                <input type="range" id="sharpSlider" min="-1" max="3" step="0.2" value="1.2">
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-primary" id="applyBtn"><i class="fas fa-magic"></i> Apply & Generate XML</button>
+                <button class="btn btn-secondary" id="resetBtn"><i class="fas fa-undo-alt"></i> Reset sliders</button>
+            </div>
+            <div class="action-buttons">
+                <button class="btn btn-outline" id="downloadBtn"><i class="fas fa-download"></i> Download config.xml</button>
+            </div>
+            <div class="note">
+                <i class="fas fa-info-circle"></i> Edits target core parameters: exposure, contrast, highlight/shadow, saturation, smoothing, sharpness. Based on your original LMC structure.
+            </div>
+        </div>
+
+        <!-- right panel: xml preview -->
+        <div class="preview-panel">
+            <div class="preview-header">
+                <span><i class="fas fa-code"></i> live XML preview</span>
+                <button class="copy-btn" id="copyXmlBtn"><i class="far fa-copy"></i> copy XML</button>
+            </div>
+            <div class="xml-preview" id="xmlPreview">
+                <?xml version="1.0" encoding="utf-8"?>
+                <map>... waiting for config load or generate ...</map>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // -------- default base XML (based on your original structure but modifiable) ----------
+    // We store the current working XML as a DOM document and string.
+    let currentXmlString = `<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<map>
+    <string name="pref_exposure_5th_key">-3</string>
+    <string name="pref_exposure_4th_key">-3</string>
+    <string name="lib_contrast_2_key">0</string>
+    <string name="lib_contrast_1_pro_key">0</string>
+    <string name="lib_brightnessintensity_key">0</string>
+    <string name="lib_hightlight2_key_2">0</string>
+    <string name="lib_hightlight2_key_3">0</string>
+    <string name="lib_shadowtuning_key">0</string>
+    <string name="lib_saturation_key">08FFE7D2</string>
+    <string name="lib_smoothingnew_key">0</string>
+    <string name="lib_sharpnessb_key">0</string>
+    <string name="lib_sharpgain_key">0800A052</string>
+    <string name="lib_lumaa_key">0</string>
+    <string name="pref_satCCT_key">1.0</string>
+    <string name="lib_lumadlsabre_l1a_key_2">0</string>
+    <string name="pref_gammacurve_preset_key">22</string>
+    <string name="lib_contrastblack_key">0</string>
+</map>`;
+
+    let originalDoc = null;   // store parsed document for updates
+
+    // Helper: parse XML string to DOM
+    function parseXml(xmlStr) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(xmlStr, "application/xml");
+        const parseError = doc.querySelector("parsererror");
+        if (parseError) {
+            console.warn("XML parse error, using fallback");
+            return null;
+        }
+        return doc;
+    }
+
+    // helper: get or create string tag, update value
+    function setStringValue(doc, nameAttr, newValue) {
+        const mapNode = doc.querySelector("map");
+        if (!mapNode) return false;
+        let target = Array.from(mapNode.querySelectorAll("string")).find(el => el.getAttribute("name") === nameAttr);
+        if (target) {
+            target.textContent = newValue;
+        } else {
+            // create new <string> element
+            const newElem = doc.createElement("string");
+            newElem.setAttribute("name", nameAttr);
+            newElem.textContent = newValue;
+            mapNode.appendChild(newElem);
+        }
+        return true;
+    }
+
+    // get current value from doc (or default)
+    function getStringValue(doc, nameAttr, defaultValue = "0") {
+        const mapNode = doc.querySelector("map");
+        if (!mapNode) return defaultValue;
+        const target = Array.from(mapNode.querySelectorAll("string")).find(el => el.getAttribute("name") === nameAttr);
+        return target ? target.textContent : defaultValue;
+    }
+
+    // convert exposure slider to actual exposure value (ev steps)
+    function applySettingsToXml(doc, exp, contrast, highlight, shadow, saturation, smoothing, sharpness) {
+        // Exposure: map slider -2..2 to exposure string values (pref_exposure_5th_key etc.)
+        let evMap = Math.round(exp * 2); // -4..4 range but more subtle: -3 to +3
+        if (evMap > 3) evMap = 3;
+        if (evMap < -3) evMap = -3;
+        const exposureStr = evMap.toString();
+        setStringValue(doc, "pref_exposure_5th_key", exposureStr);
+        setStringValue(doc, "pref_exposure_4th_key", exposureStr);
+        setStringValue(doc, "pref_exposure_wide_key", exposureStr);
+        setStringValue(doc, "pref_exposure_tele_key", exposureStr);
+
+        // Contrast: lib_contrast_2_key, lib_contrast_1_pro_key -> integer mapping 0..5
+        let contVal = Math.min(5, Math.max(0, Math.floor((contrast + 1.5) * 1.4)));
+        setStringValue(doc, "lib_contrast_2_key", contVal.toString());
+        setStringValue(doc, "lib_contrast_1_pro_key", contVal.toString());
+        // also contrastblack
+        let blackCont = Math.min(4, Math.max(0, Math.floor((contrast) * 1.2)));
+        setStringValue(doc, "lib_contrastblack_key", blackCont.toString());
+
+        // Highlight control: lib_hightlight2_key_2 .. _5
+        let highVal = Math.min(5, Math.max(0, Math.floor(highlight)));
+        setStringValue(doc, "lib_hightlight2_key_2", highVal.toString());
+        setStringValue(doc, "lib_hightlight2_key_3", highVal.toString());
+        setStringValue(doc, "lib_hightlight2_key_4", highVal.toString());
+        setStringValue(doc, "lib_hightlight2_key_5", highVal.toString());
+
+        // Shadow: lib_shadowtuning_key and shadowtuning variations
+        let shadowVal = Math.min(5, Math.max(0, Math.floor((shadow + 2) * 1.2)));
+        setStringValue(doc, "lib_shadowtuning_key", shadowVal.toString());
+        setStringValue(doc, "lib_shadowtuning_key_2", shadowVal.toString());
+        setStringValue(doc, "lib_shadowtuning_key_3", shadowVal.toString());
+
+        // Saturation: two parts — pref_satCCT_key (float) and lib_saturation_key (hex/scale)
+        let satFactor = 0.8 + (saturation * 0.3);
+        if (satFactor > 1.25) satFactor = 1.25;
+        if (satFactor < 0.6) satFactor = 0.6;
+        setStringValue(doc, "pref_satCCT_key", satFactor.toFixed(2));
+        // lib_saturation_key remains hex but we can adjust via additional saturation parameter but leave unchanged mostly
+        // but we also add lib_saturation_key_2..5 for completeness
+        let satInt = Math.floor(8 + saturation * 12);
+        if (satInt > 20) satInt = 20;
+        if (satInt < 3) satInt = 3;
+        // keep hex pattern but it's fine
+        setStringValue(doc, "lib_saturation_key_2", satInt.toString());
+        setStringValue(doc, "lib_saturation_key_3", satInt.toString());
+
+        // Smoothing / denoise: lib_smoothingnew_key and lib_smoothingnew_key_2..5
+        let smoothInt = Math.min(8, Math.max(0, Math.floor(smoothing)));
+        setStringValue(doc, "lib_smoothingnew_key", smoothInt.toString());
+        setStringValue(doc, "lib_smoothingnew_key_2", smoothInt.toString());
+        setStringValue(doc, "lib_smoothingnew_key_3", smoothInt.toString());
+        setStringValue(doc, "lib_smoothingnew_key_4", smoothInt.toString());
+        setStringValue(doc, "lib_smoothingnew_key_5", smoothInt.toString());
+        setStringValue(doc, "lib_denoisesmoothing_key", (smoothInt * 0.8).toFixed(0));
+
+        // Sharpness: lib_sharpnessb_key (0-5 scale) & lib_sharpgain_key slight adjust
+        let sharpInt = Math.min(5, Math.max(0, Math.floor((sharpness + 1) * 1.5)));
+        setStringValue(doc, "lib_sharpnessb_key", sharpInt.toString());
+        setStringValue(doc, "lib_sharpnessb_key_2", sharpInt.toString());
+        setStringValue(doc, "lib_sharpnessb_key_3", sharpInt.toString());
+        setStringValue(doc, "lib_sabresharp_key", sharpInt.toString());
+        // micro sharpness
+        let microSharp = Math.min(3, Math.max(0, sharpness / 1.5));
+        setStringValue(doc, "lib_sharpmini_key", Math.floor(microSharp).toString());
+
+        // Additional iPhone smoothness: enable lum smoothing & temporal
+        setStringValue(doc, "lib_lumasmoothing_key", Math.floor(smoothing * 0.7).toString());
+        setStringValue(doc, "lib_lumadlsabre_l1a_key_2", "2");
+        setStringValue(doc, "lib_lumadlsabre_l1a_key_3", "2");
+        // For natural tone: adjust global wb slightly
+        if (saturation > 0.2) {
+            setStringValue(doc, "pref_satCCT_R_key", (0.92 + saturation * 0.05).toFixed(3));
+        } else {
+            setStringValue(doc, "pref_satCCT_R_key", "0.92");
+        }
+        return doc;
+    }
+
+    // render preview
+    function updatePreview(doc) {
+        if (!doc) return;
+        const serializer = new XMLSerializer();
+        let xmlStr = serializer.serializeToString(doc);
+        // beautify line breaks for readability (basic)
+        xmlStr = xmlStr.replace(/><\/string>/g, '></string>\n');
+        xmlStr = xmlStr.replace(/><\/int>/g, '></int>\n');
+        currentXmlString = xmlStr;
+        const previewDiv = document.getElementById("xmlPreview");
+        previewDiv.textContent = xmlStr;
+    }
+
+    // get current slider values
+    function getSliderValues() {
+        return {
+            exp: parseFloat(document.getElementById("exposureSlider").value),
+            contrast: parseFloat(document.getElementById("contrastSlider").value),
+            highlight: parseFloat(document.getElementById("highlightSlider").value),
+            shadow: parseFloat(document.getElementById("shadowSlider").value),
+            sat: parseFloat(document.getElementById("satSlider").value),
+            smooth: parseFloat(document.getElementById("smoothSlider").value),
+            sharp: parseFloat(document.getElementById("sharpSlider").value)
+        };
+    }
+
+    function updateValueDisplays() {
+        document.getElementById("expVal").innerText = document.getElementById("exposureSlider").value;
+        document.getElementById("contrVal").innerText = document.getElementById("contrastSlider").value;
+        document.getElementById("highVal").innerText = document.getElementById("highlightSlider").value;
+        document.getElementById("shadowVal").innerText = document.getElementById("shadowSlider").value;
+        document.getElementById("satVal").innerText = document.getElementById("satSlider").value;
+        document.getElementById("smoothVal").innerText = document.getElementById("smoothSlider").value;
+        document.getElementById("sharpVal").innerText = document.getElementById("sharpSlider").value;
+    }
+
+    // apply current sliders to global doc
+    function applyAndRender() {
+        if (!originalDoc) {
+            // initialize from currentXmlString
+            originalDoc = parseXml(currentXmlString);
+            if (!originalDoc) {
+                console.error("invalid xml");
+                return;
+            }
+        }
+        const vals = getSliderValues();
+        const updatedDoc = applySettingsToXml(originalDoc, vals.exp, vals.contrast, vals.highlight, vals.shadow, vals.sat, vals.smooth, vals.sharp);
+        originalDoc = updatedDoc;
+        updatePreview(originalDoc);
+        showToast("XML parameters updated with custom intensity");
+    }
+
+    function resetSliders() {
+        document.getElementById("exposureSlider").value = "0.3";
+        document.getElementById("contrastSlider").value = "0.4";
+        document.getElementById("highlightSlider").value = "2.0";
+        document.getElementById("shadowSlider").value = "0.6";
+        document.getElementById("satSlider").value = "0.25";
+        document.getElementById("smoothSlider").value = "2.5";
+        document.getElementById("sharpSlider").value = "1.2";
+        updateValueDisplays();
+        if (originalDoc) {
+            const vals = getSliderValues();
+            const newDoc = applySettingsToXml(originalDoc, vals.exp, vals.contrast, vals.highlight, vals.shadow, vals.sat, vals.smooth, vals.sharp);
+            originalDoc = newDoc;
+            updatePreview(originalDoc);
+            showToast("Reset to smooth & natural preset");
+        } else {
+            applyAndRender();
+        }
+    }
+
+    function showToast(msg) {
+        let toast = document.querySelector(".toast-msg");
+        if (!toast) {
+            toast = document.createElement("div");
+            toast.className = "toast-msg";
+            document.body.appendChild(toast);
+        }
+        toast.innerHTML = `<i class="fas fa-check-circle"></i> ${msg}`;
+        toast.style.opacity = "1";
+        setTimeout(() => { toast.style.opacity = "0"; }, 2200);
+    }
+
+    // file upload handler
+    function handleXmlFile(file) {
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const content = e.target.result;
+            const parsed = parseXml(content);
+            if (!parsed) {
+                showToast("Invalid XML, using default structure");
+                return;
+            }
+            originalDoc = parsed;
+            currentXmlString = content;
+            updatePreview(originalDoc);
+            // after loading, apply current slider values to loaded doc
+            const vals = getSliderValues();
+            const updated = applySettingsToXml(originalDoc, vals.exp, vals.contrast, vals.highlight, vals.shadow, vals.sat, vals.smooth, vals.sharp);
+            originalDoc = updated;
+            updatePreview(originalDoc);
+            showToast(`Loaded: ${file.name}`);
+        };
+        reader.readAsText(file);
+        document.getElementById("fileNameDisplay").innerText = file.name;
+    }
+
+    // download xml
+    function downloadXml() {
+        if (!originalDoc) {
+            applyAndRender();
+        }
+        const serializer = new XMLSerializer();
+        let xmlStr = serializer.serializeToString(originalDoc);
+        const blob = new Blob([xmlStr], {type: "application/xml"});
+        const a = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+        a.href = url;
+        a.download = "lmc_custom_config.xml";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast("config.xml downloaded");
+    }
+
+    function copyXmlToClipboard() {
+        if (!originalDoc) {
+            applyAndRender();
+        }
+        const serializer = new XMLSerializer();
+        const xmlStr = serializer.serializeToString(originalDoc);
+        navigator.clipboard.writeText(xmlStr).then(() => showToast("XML copied to clipboard"));
+    }
+
+    // event binding
+    document.getElementById("xmlFileInput").addEventListener("change", (e) => {
+        if (e.target.files.length) handleXmlFile(e.target.files[0]);
+    });
+    document.getElementById("uploadZone").addEventListener("click", () => {
+        document.getElementById("xmlFileInput").click();
+    });
+    document.getElementById("applyBtn").addEventListener("click", applyAndRender);
+    document.getElementById("resetBtn").addEventListener("click", resetSliders);
+    document.getElementById("downloadBtn").addEventListener("click", downloadXml);
+    document.getElementById("copyXmlBtn").addEventListener("click", copyXmlToClipboard);
+
+    // initial sliders display
+    updateValueDisplays();
+    // initialize base doc
+    originalDoc = parseXml(currentXmlString);
+    if (originalDoc) {
+        const vals = getSliderValues();
+        originalDoc = applySettingsToXml(originalDoc, vals.exp, vals.contrast, vals.highlight, vals.shadow, vals.sat, vals.smooth, vals.sharp);
+        updatePreview(originalDoc);
+    } else {
+        applyAndRender();
+    }
+
+    // drag & drop
+    const dropZone = document.getElementById("uploadZone");
+    dropZone.addEventListener("dragover", (e) => { e.preventDefault(); dropZone.style.borderColor = "#9f87ff"; });
+    dropZone.addEventListener("dragleave", () => { dropZone.style.borderColor = "#3e425c"; });
+    dropZone.addEventListener("drop", (e) => {
+        e.preventDefault();
+        dropZone.style.borderColor = "#3e425c";
+        const file = e.dataTransfer.files[0];
+        if (file && (file.name.endsWith(".xml") || file.type === "text/xml")) handleXmlFile(file);
+        else showToast("Please drop an XML file");
+    });
+</script>
+</body>
+</html>
